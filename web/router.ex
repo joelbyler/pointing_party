@@ -19,6 +19,9 @@ defmodule PointingParty.Router do
     get "/", PageController, :index
     get "/new", PageController, :new
     post "/create", PageController, :create
+    get "/signin", PageController, :signin
+    post "/connect", PageController, :connect
+    get "/show", PageController, :show
   end
 
   # Other scopes may use custom stacks.

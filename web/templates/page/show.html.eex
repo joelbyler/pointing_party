@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-sm-12">
+    <%= @party_name %>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Users</h3>
+      </div>
+      <div id="users" class="panel-body">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-5">
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Chat</h3>
+      </div>
+      <div id="messages" class="panel-body">
+      </div>
+      <div class="panel-footer">
+        <input id="message-input"
+               class="form-control"
+               type="text"
+               placeholder="Send..."/>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  /*
+    TODO: eventually some of this stuff will be in a ETS table can be
+          looked up by a "user key" or something, to make this more
+          secure and easier to enhance */
+  window.partyName = "<%= assigns[:party_name] %>";
+  window.partyInviteKey = "<%= assigns[:party_invite_key] %>";
+  window.partyToken = "<%= assigns[:party_token] %>";
+  window.userName = "<%= assigns[:user_name] %>";
+</script>

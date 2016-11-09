@@ -1,5 +1,5 @@
 Start a new session
-<%= form_for @conn, page_path(@conn, :create), [name: :party, class: "form-inline"], fn f -> %>
+<%= form_for @conn, page_path(@conn, :create), [as: :party, class: "form-inline"], fn f -> %>
   <%= text_input f, :for, class: "form-control" %>
   <%= submit "Create", class: "btn btn-primary" %>
 <% end %>
