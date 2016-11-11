@@ -41,4 +41,5 @@
   window.partyInviteKey = "<%= assigns[:party_invite_key] %>";
   window.partyToken = "<%= assigns[:party_token] %>";
   window.userName = "<%= assigns[:user_name] %>";
+  window.userToken = "<%= assigns[:user_token] %>";
 </script>

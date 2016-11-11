@@ -12,6 +12,8 @@ defmodule PointingParty do
       supervisor(PointingParty.Repo, []),
       # Start the endpoint when the application starts
       supervisor(PointingParty.Endpoint, []),
+
+      supervisor(PointingParty.Presence, []),
       # Start your own worker by calling: PointingParty.Worker.start_link(arg1, arg2, arg3)
       # worker(PointingParty.Worker, [arg1, arg2, arg3]),
     ]

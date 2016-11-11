@@ -1,21 +1,40 @@
-// Brunch automatically concatenates all files in your
-// watched paths. Those paths can be configured at
-// config.paths.watched in "brunch-config.js".
-//
-// However, those files will only be executed if
-// explicitly imported. The only exception are files
-// in vendor, which are never wrapped in imports and
-// therefore are always executed.
-
-// Import dependencies
-//
-// If you no longer want to use a dependency, remember
-// to also remove its path from "config.paths.watched".
 import "phoenix_html"
+import {Socket, Presence} from "phoenix"
 
-// Import local files
-//
-// Local files can be imported directly using relative
-// paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
+if (window.userToken) {
+
+  let user_token = window.userToken;
+  let party_token = window.partyToken;
+
+  let socket = new Socket("/socket", {params: {token: user_token}})
+
+  socket.connect()
+
+  let party = socket.channel("party:" + party_token, {})
+  let presences = {}
+
+  let listBy = (user, {metas: metas}) => {
+    return {
+      user: user,
+    }
+  }
+
+  let userList = document.getElementById("users")
+  let render = (presences) => {
+    userList.innerHTML = Presence.list(presences, listBy)
+      .map(presence => `
+        <li><b>${presence.user}</b></li>
+      `)
+      .join("")
+  }
+  party.on("presence_state", state => {
+    presences = Presence.syncState(presences, state)
+    render(presences)
+  })
+  party.on("presence_diff", diff => {
+    presences = Presence.syncDiff(presences, diff)
+    render(presences)
+  })
+  party.join()
+}

@@ -1,8 +1,8 @@
 defmodule PointingParty.PageController do
   use PointingParty.Web, :controller
 
-  plug :name_the_party when not action in [:create]
-  plug :name_the_user when not action in [:connect]
+  plug :name_the_party when not action in [:create, :connect, :index]
+  plug :name_the_user when not action in [:create, :connect, :index]
 
   def index(conn, _params) do
     render conn, "index.html"
@@ -36,7 +36,7 @@ defmodule PointingParty.PageController do
     |> put_flash(:info, "Please provide a user name")
     |> redirect(to: page_path(conn, :signin))
   end
-  def create(conn, %{"party" => %{"user_name" => user_name}}) do
+  def connect(conn, %{"party" => %{"user_name" => user_name}}) do
     IO.puts "user_name: #{user_name}"
     conn
     |> put_session(:user_name, user_name)
@@ -57,10 +57,14 @@ defmodule PointingParty.PageController do
   end
 
   defp name_the_user(conn, _) do
+    IO.puts "foo"
     if user_name = get_session(conn, :user_name) do
+      IO.puts "bar"
       conn
       |> assign(:user_name, user_name)
+      |> assign(:user_token, Phoenix.Token.sign(conn, "user token", user_name))
     else
+      IO.puts "baz"
       conn
       |> render("signin.html")
       |> halt()
