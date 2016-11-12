@@ -22,4 +22,13 @@ defmodule PointingParty.PartyChannel do
 
     {:noreply, socket}
   end
+
+  def handle_in("message:new", message, socket) do
+    broadcast! socket, "message:new", %{
+      user: socket.assigns.user_name,
+      body: message,
+      timestamp: :os.system_time(:milli_seconds)
+    }
+    {:noreply, socket}
+  end
 end

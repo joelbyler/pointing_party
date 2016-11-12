@@ -6,7 +6,7 @@ if (window.userToken) {
 
   let user_token = window.userToken;
   let party_key = window.partyKey;
-console.log(party_key)
+
   let socket = new Socket("/socket", {params: {token: user_token}})
 
   socket.connect()
@@ -37,4 +37,27 @@ console.log(party_key)
     render(presences)
   })
   party.join()
+
+  // Chat
+  let message_input = document.getElementById("message-input")
+  message_input.addEventListener("keypress", (e) => {
+    if (e.keyCode == 13 && message_input.value != "") {
+      party.push("message:new", message_input.value)
+      message_input.value = ""
+    }
+  })
+
+  let message_list = document.getElementById("messages")
+  let render_message = (message) => {
+    let message_element = document.createElement("li")
+    message_element.innerHTML = `
+      <b>${message.user}</b>
+      <p>${message.body}</p>
+    `
+    message_list.appendChild(message_element)
+    message_list.scrollTop = message_list.scrollHeight;
+  }
+
+  party.on("message:new", message => render_message(message))
+
 }
