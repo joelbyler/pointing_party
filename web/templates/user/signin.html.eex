@@ -1,5 +1,5 @@
 What should we call you?
-<%= form_for @conn, page_path(@conn, :connect), [as: :party, class: "form-inline"], fn f -> %>
+<%= form_for @conn, user_path(@conn, :connect), [as: :party, class: "form-inline"], fn f -> %>
   <%= text_input f, :user_name, class: "form-control" %>
   <%= submit "Connect", class: "btn btn-primary" %>
 <% end %>

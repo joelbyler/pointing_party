@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
     <%= @party_name %>
+    <a href="join?k=<%= assigns[:party_key] %>">invite</a>
   </div>
 </div>
 <div class="row">
@@ -38,8 +39,7 @@
           looked up by a "user key" or something, to make this more
           secure and easier to enhance */
   window.partyName = "<%= assigns[:party_name] %>";
-  window.partyInviteKey = "<%= assigns[:party_invite_key] %>";
-  window.partyToken = "<%= assigns[:party_token] %>";
+  window.partyKey = "<%= assigns[:party_key] %>";
   window.userName = "<%= assigns[:user_name] %>";
   window.userToken = "<%= assigns[:user_token] %>";
 </script>

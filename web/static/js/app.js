@@ -5,13 +5,13 @@ import {Socket, Presence} from "phoenix"
 if (window.userToken) {
 
   let user_token = window.userToken;
-  let party_token = window.partyToken;
-
+  let party_key = window.partyKey;
+console.log(party_key)
   let socket = new Socket("/socket", {params: {token: user_token}})
 
   socket.connect()
 
-  let party = socket.channel("party:" + party_token, {})
+  let party = socket.channel("party:" + party_key, {})
   let presences = {}
 
   let listBy = (user, {metas: metas}) => {

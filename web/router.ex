@@ -17,11 +17,15 @@ defmodule PointingParty.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/new", PageController, :new
-    post "/create", PageController, :create
-    get "/signin", PageController, :signin
-    post "/connect", PageController, :connect
-    get "/show", PageController, :show
+    get "/join", JoinController, :join
+
+    get "/new", PartyController, :new
+    post "/create", PartyController, :create
+
+    get "/signin", UserController, :signin
+    post "/connect", UserController, :connect
+
+    get "/show", PartyController, :show
   end
 
   # Other scopes may use custom stacks.

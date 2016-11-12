@@ -2,13 +2,13 @@ defmodule PointingParty.PartyChannel do
   use Phoenix.Channel
   alias PointingParty.Presence
 
-  def join("party:" <> token, _params, socket) do
-    # {:ok, party} = Party.find(token)
-    party = "foo"
+  def join("party:" <> party_key, _params, socket) do
+    IO.puts "party:#{party_key}"
+    party = PointingParty.PartyTracker.party(party_key)
     socket =
       socket
       |> assign(:party, party)
-      |> assign(:party_token, token)
+      |> assign(:party_key, party_key)
 
     send self(), :after_join
 
@@ -18,7 +18,7 @@ defmodule PointingParty.PartyChannel do
   def handle_info(:after_join, socket) do
     push socket, "presence_state", Presence.list(socket)
     {:ok, ref} = Presence.track(socket, socket.assigns.user_name, %{})
-    :ok = PointingParty.Endpoint.subscribe("party:#{socket.assigns.party_token}:#{ref}")
+    :ok = PointingParty.Endpoint.subscribe("party:#{socket.assigns.party_key}:#{ref}")
 
     {:noreply, socket}
   end

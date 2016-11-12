@@ -22,7 +22,7 @@ defmodule PointingParty.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   def connect(%{"token" => token}, socket) do
-    case Phoenix.Token.verify(socket, "user token", token, max_age: 1209600) do
+    case Phoenix.Token.verify(socket, "user name", token, max_age: 1209600) do
       {:ok, user_name} ->
         {:ok, assign(socket, :user_name, user_name)}
       {:error, _reason} -> :error
