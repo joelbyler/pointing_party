@@ -1,6 +1,6 @@
 import "phoenix_html"
 import {Socket, Presence} from "phoenix"
-
+import $ from "jquery"
 
 if (window.userToken) {
 
@@ -17,6 +17,7 @@ if (window.userToken) {
   let listBy = (user, {metas: metas}) => {
     return {
       user: user,
+      points: metas[0].points || ""
     }
   }
 
@@ -24,7 +25,7 @@ if (window.userToken) {
   let render = (presences) => {
     userList.innerHTML = Presence.list(presences, listBy)
       .map(presence => `
-        <li><b>${presence.user}</b></li>
+        <li class="list-group-item list-group-item-action">${presence.user} [ ${presence.points} ]</a>
       `)
       .join("")
   }
@@ -57,7 +58,14 @@ if (window.userToken) {
     message_list.appendChild(message_element)
     message_list.scrollTop = message_list.scrollHeight;
   }
-
   party.on("message:new", message => render_message(message))
 
+  $( ".btn-points" ).click(function() {
+    let points = $(this).data("points")
+    party.push("points:new", points)
+  });
+
+  $( "#btn-clear" ).click(function() {
+    party.push("points:reset")
+  });
 }
