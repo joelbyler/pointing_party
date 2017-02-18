@@ -2,5 +2,5 @@
   <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
   <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
   <br/>
-  <%= link("Start a new session", to: page_path(@conn, :new), class: "btn btn-primary btn-lg") %>
+  <%= link("Start a new session", to: party_path(@conn, :new), class: "btn btn-primary btn-lg") %>
 </div>

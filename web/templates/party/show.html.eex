@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-sm-12">
+    <%= @party_name %>
+    <a href="join?k=<%= assigns[:party_key] %>">invite</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10">
+    <input class="btn btn-primary btn-points" type="button" data-points="0" value="0 points">
+    <input class="btn btn-primary btn-points" type="button" data-points="1" value="1 points">
+    <input class="btn btn-primary btn-points" type="button" data-points="2" value="2 points">
+    <input class="btn btn-primary btn-points" type="button" data-points="3" value="3 points">
+    <input class="btn btn-primary btn-points" type="button" data-points="5" value="5 points">
+    <input class="btn btn-primary btn-points" type="button" data-points="8" value="8 points">
+    <input class="btn btn-primary btn-points" type="button" data-points="15" value="15 points">
+  </div>
+  <div class="col-md-2">
+    <input class="btn btn-secondary" id="btn-clear" type="button" value="Clear">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-7">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Users</h3>
+      </div>
+      <div id="users" class="panel-body list-group">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-1">
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Chat</h3>
+      </div>
+      <div id="messages" class="panel-body">
+      </div>
+      <div class="panel-footer">
+        <input id="message-input"
+               class="form-control"
+               type="text"
+               placeholder="Send..."/>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  /*
+    TODO: eventually some of this stuff will be in a ETS table can be
+          looked up by a "user key" or something, to make this more
+          secure and easier to enhance */
+  window.partyName = "<%= assigns[:party_name] %>";
+  window.partyKey = "<%= assigns[:party_key] %>";
+  window.userName = "<%= assigns[:user_name] %>";
+  window.userToken = "<%= assigns[:user_token] %>";
+</script>
