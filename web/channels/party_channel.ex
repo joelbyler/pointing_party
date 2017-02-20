@@ -60,4 +60,9 @@ defmodule PointingParty.PartyChannel do
     })
     {:noreply, socket}
   end
+
+  def handle_in("points:show", %{}, socket) do
+    broadcast! socket, "user:points:show", %{}
+    {:noreply, socket}
+  end
 end

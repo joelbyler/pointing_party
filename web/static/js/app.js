@@ -6,6 +6,7 @@ if (window.userToken) {
 
   let user_token = window.userToken;
   let party_key = window.partyKey;
+  let show_points = false;
 
   let socket = new Socket("/socket", {params: {token: user_token}})
 
@@ -21,11 +22,23 @@ if (window.userToken) {
     }
   }
 
+  let pointsDisplay = (presence) => {
+    let point_text = "voted"
+    let label_type = "success"
+    if (!presence.points) {
+      point_text = "no vote"
+      label_type = "default"
+    } else if (presence.user == window.userName || show_points)
+      point_text = `${presence.points}`
+
+    return `<span class="label label-${label_type}"> ${point_text} </span>`
+  }
+
   let userList = document.getElementById("users")
   let render = (presences) => {
     userList.innerHTML = Presence.list(presences, listBy)
       .map(presence => `
-        <li class="list-group-item list-group-item-action">${presence.user} [ ${presence.points} ]</a>
+        <li class="list-group-item list-group-item-action">${presence.user} &nbsp ${pointsDisplay(presence)}</a>
       `)
       .join("")
   }
@@ -37,6 +50,7 @@ if (window.userToken) {
     presences = Presence.syncDiff(presences, diff)
     render(presences)
   })
+
   party.join()
 
   // Chat
@@ -66,6 +80,15 @@ if (window.userToken) {
   });
 
   $( "#btn-clear" ).click(function() {
+    show_points = false;
     party.push("points:reset")
   });
+
+  $( "#btn-show" ).click(function() {
+    party.push("points:show")
+  });
+  party.on("user:points:show", state => {
+    show_points = true;
+    render(presences)
+  })
 }

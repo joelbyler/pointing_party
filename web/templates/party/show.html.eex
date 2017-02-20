@@ -4,17 +4,19 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-10">
-    <input class="btn btn-primary btn-points" type="button" data-points="0" value="0 points">
-    <input class="btn btn-primary btn-points" type="button" data-points="1" value="1 points">
-    <input class="btn btn-primary btn-points" type="button" data-points="2" value="2 points">
-    <input class="btn btn-primary btn-points" type="button" data-points="3" value="3 points">
-    <input class="btn btn-primary btn-points" type="button" data-points="5" value="5 points">
-    <input class="btn btn-primary btn-points" type="button" data-points="8" value="8 points">
-    <input class="btn btn-primary btn-points" type="button" data-points="15" value="15 points">
+  <div class="col-md-8">
+    <input class="btn btn-primary btn-points" type="button" data-points="0" value="0">
+    <input class="btn btn-primary btn-points" type="button" data-points="1" value="1">
+    <input class="btn btn-primary btn-points" type="button" data-points="2" value="2">
+    <input class="btn btn-primary btn-points" type="button" data-points="3" value="3">
+    <input class="btn btn-primary btn-points" type="button" data-points="5" value="5">
+    <input class="btn btn-primary btn-points" type="button" data-points="8" value="8">
+    <input class="btn btn-primary btn-points" type="button" data-points="15" value="15">
+    <input class="btn btn-primary btn-points" type="button" data-points="?" value="?">
   </div>
-  <div class="col-md-2">
+  <div class="col-md-4">
     <input class="btn btn-secondary" id="btn-clear" type="button" value="Clear">
+    <input class="btn btn-secondary" id="btn-show" type="button" value="Show votes">
   </div>
 </div>
 <div class="row">
