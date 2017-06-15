@@ -52,6 +52,13 @@
     </div>
   </div>
 </div>
+
+<div id="pointing-party-app"
+     data-party-name="<%= assigns[:party_name] %>"
+     data-party-key="<%= assigns[:party_key] %>"
+     data-user-name="<%= assigns[:user_name] %>"
+     data-user-token="<%= assigns[:user_token] %>"></div>
+
 <script>
   /*
     TODO: eventually some of this stuff will be in a ETS table can be
