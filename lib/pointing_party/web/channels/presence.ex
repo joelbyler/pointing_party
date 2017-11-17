@@ -1,4 +1,4 @@
-defmodule PointingParty.Presence do
+defmodule PointingParty.Web.Presence do
   @moduledoc """
   Provides presence tracking to channels and processes.
 

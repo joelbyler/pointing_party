@@ -1,4 +1,4 @@
-defmodule PointingParty.ConnCase do
+defmodule PointingParty.Web.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,10 +25,10 @@ defmodule PointingParty.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import PointingParty.Router.Helpers
+      import PointingParty.Web.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint PointingParty.Endpoint
+      @endpoint PointingParty.Web.Endpoint
     end
   end
 

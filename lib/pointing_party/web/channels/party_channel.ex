@@ -1,6 +1,6 @@
-defmodule PointingParty.PartyChannel do
+defmodule PointingParty.Web.PartyChannel do
   use Phoenix.Channel
-  alias PointingParty.Presence
+  alias PointingParty.Web.Presence
 
   def join("party:" <> party_key, _params, socket) do
     party = PointingParty.PartyTracker.party(party_key)
@@ -19,7 +19,7 @@ defmodule PointingParty.PartyChannel do
     {:ok, ref} = Presence.track(socket, socket.assigns.user_name, %{
         points: nil
       })
-    :ok = PointingParty.Endpoint.subscribe("party:#{socket.assigns.party_key}:#{ref}")
+    :ok = PointingParty.Web.Endpoint.subscribe("party:#{socket.assigns.party_key}:#{ref}")
 
     {:noreply, socket}
   end

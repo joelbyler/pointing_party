@@ -1,4 +1,4 @@
-defmodule PointingParty.Gettext do
+defmodule PointingParty.Web.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 

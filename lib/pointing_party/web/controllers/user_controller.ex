@@ -1,4 +1,4 @@
-defmodule PointingParty.UserController do
+defmodule PointingParty.Web.UserController do
   use PointingParty.Web, :controller
 
   plug :require_party when not action in [:connect]

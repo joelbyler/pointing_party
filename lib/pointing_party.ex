@@ -11,7 +11,7 @@ defmodule PointingParty do
       # Start the Ecto repository
       supervisor(PointingParty.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(PointingParty.Endpoint, []),
+      supervisor(PointingParty.Web.Endpoint, []),
 
       worker(PointingParty.PartyTracker, [[name: :party_tracker]]),
       supervisor(PointingParty.Presence, []),
@@ -23,12 +23,5 @@ defmodule PointingParty do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: PointingParty.Supervisor]
     Supervisor.start_link(children, opts)
-  end
-
-  # Tell Phoenix to update the endpoint configuration
-  # whenever the application is updated.
-  def config_change(changed, _new, removed) do
-    PointingParty.Endpoint.config_change(changed, removed)
-    :ok
   end
 end

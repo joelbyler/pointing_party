@@ -1,4 +1,4 @@
-defmodule PointingParty.ErrorHelpers do
+defmodule PointingParty.Web.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule PointingParty.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(PointingParty.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(PointingParty.Web.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(PointingParty.Gettext, "errors", msg, opts)
+      Gettext.dgettext(PointingParty.Web.Gettext, "errors", msg, opts)
     end
   end
 end

@@ -1,4 +1,4 @@
-defmodule PointingParty.UserSocket do
+defmodule PointingParty.Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels

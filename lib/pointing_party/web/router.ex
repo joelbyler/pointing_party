@@ -1,4 +1,4 @@
-defmodule PointingParty.Router do
+defmodule PointingParty.Web.Router do
   use PointingParty.Web, :router
 
   pipeline :browser do
@@ -13,7 +13,7 @@ defmodule PointingParty.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", PointingParty do
+  scope "/", PointingParty.Web do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index

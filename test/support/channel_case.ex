@@ -1,4 +1,4 @@
-defmodule PointingParty.ChannelCase do
+defmodule PointingParty.Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -27,7 +27,7 @@ defmodule PointingParty.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint PointingParty.Endpoint
+      @endpoint PointingParty.Web.Endpoint
     end
   end
 

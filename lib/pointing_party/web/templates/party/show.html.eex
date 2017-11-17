@@ -21,7 +21,7 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <div><%= Application.get_env(:pointing_party, PointingParty.Endpoint)[:url][:scheme] || 'http' %>://<%= Application.get_env(:pointing_party, PointingParty.Endpoint)[:url][:host] %>/join?k=<%= assigns[:party_key] %></div>
+    <div><%= Application.get_env(:pointing_party, PointingParty.Web.Endpoint)[:url][:scheme] || 'http' %>://<%= Application.get_env(:pointing_party, PointingParty.Web.Endpoint)[:url][:host] %>/join?k=<%= assigns[:party_key] %></div>
   </div>
 </div>
 <div class="row">

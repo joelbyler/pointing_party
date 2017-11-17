@@ -1,5 +1,5 @@
 defmodule PointingParty.PageControllerTest do
-  use PointingParty.ConnCase
+  use PointingParty.Web.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

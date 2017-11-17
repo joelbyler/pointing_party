@@ -1,7 +1,7 @@
-defmodule PointingParty.Endpoint do
+defmodule PointingParty.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :pointing_party
 
-  socket "/socket", PointingParty.UserSocket
+  socket "/socket", PointingParty.Web.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -38,5 +38,5 @@ defmodule PointingParty.Endpoint do
     key: "_pointing_party_key",
     signing_salt: "9op0GS5S"
 
-  plug PointingParty.Router
+  plug PointingParty.Web.Router
 end

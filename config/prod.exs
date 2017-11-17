@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :pointing_party, PointingParty.Endpoint,
+config :pointing_party, PointingParty.Web.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [scheme: "https", host: "pointingparty.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],

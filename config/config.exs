@@ -10,10 +10,10 @@ config :pointing_party,
   ecto_repos: [PointingParty.Repo]
 
 # Configures the endpoint
-config :pointing_party, PointingParty.Endpoint,
+config :pointing_party, PointingParty.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "0chWkRW5cFaYRK6ixDEsg/Qc35GHX4unSnsD1TO5T9CqxDC99eXlOrB01a7lQnAi",
-  render_errors: [view: PointingParty.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: PointingParty.Web.ErrorView, accepts: ~w(html json)],
   pubsub: [name: PointingParty.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

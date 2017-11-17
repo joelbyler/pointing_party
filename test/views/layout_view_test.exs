@@ -1,3 +1,3 @@
 defmodule PointingParty.LayoutViewTest do
-  use PointingParty.ConnCase, async: true
+  use PointingParty.Web.ConnCase, async: true
 end
