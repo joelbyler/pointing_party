@@ -26,6 +26,8 @@ defmodule PointingParty.Router do
     post "/connect", UserController, :connect
 
     get "/show", PartyController, :show
+
+    get "/.well-known/acme-challenge/:id", ChallengeController, :show
   end
 
   # Other scopes may use custom stacks.

@@ -17,6 +17,9 @@ config :pointing_party, PointingParty.Endpoint,
   pubsub: [name: PointingParty.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :pointing_party,
+  ssl_config: [input_sha: "abc", output_sha: "xyz"]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
