@@ -9,7 +9,7 @@ defmodule PointingParty.ChallengeController do
     render conn, "show.html", sha: @output_sha
   end
 
-  def show(conn, %{ "id" => bad_sha }) do
-    render conn, "show.html", sha: "bad_sha: #{bad_sha}, should be #{@input_sha}"
-  end
+  # def show(conn, %{ "id" => bad_sha }) do
+  #   render conn, "show.html", sha: "bad_sha: #{bad_sha}, should be #{@input_sha}"
+  # end
 end
