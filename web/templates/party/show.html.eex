@@ -15,13 +15,13 @@
     <input class="btn btn-primary btn-points" type="button" data-points="?" value="?">
   </div>
   <div class="col-md-4">
-    <input class="btn btn-secondary" id="btn-clear" type="button" value="Clear">
-    <input class="btn btn-secondary" id="btn-show" type="button" value="Show votes">
+    <input class="btn btn-info" id="btn-clear" type="button" value="Clear">
+    <input class="btn btn-info" id="btn-show" type="button" value="Show votes">
   </div>
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <input class="copy-link party-link" id="party-link" type="text" readonly value="<%= build_join_url(assigns[:party_key]) %>"><span class="copy-link clipboard" data-target="party-link">📋</span>
+    <input class="copy-link party-link" id="party-link" type="text" readonly value="<%=join_url(@conn, :new, assigns[:party_key])%>"><span class="copy-link clipboard" data-target="party-link">📋</span>
   </div>
 </div>
 <div class="row">

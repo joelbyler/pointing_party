@@ -1,13 +1,13 @@
 defmodule PointingParty.JoinController do
   use PointingParty.Web, :controller
 
-  def join(conn, %{"k" => party_key}) do
+  def new(conn, %{"k" => party_key}) do
     conn
     |> join_the_party(party_key)
     |> redirect(to: user_path(conn, :signin))
   end
 
-  def join(conn, %{"id" => party_key}) do
+  def new(conn, %{"id" => party_key}) do
     conn
     |> join_the_party(party_key)
     |> redirect(to: user_path(conn, :signin))
