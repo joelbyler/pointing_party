@@ -21,7 +21,7 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <div><%= Application.get_env(:pointing_party, PointingParty.Endpoint)[:url][:scheme] || 'http' %>://<%= Application.get_env(:pointing_party, PointingParty.Endpoint)[:url][:host] %>/join?k=<%= assigns[:party_key] %></div>
+    <input class="copy-link party-link" id="party-link" type="text" readonly value="<%= build_join_url(assigns[:party_key]) %>"><span class="copy-link clipboard" data-target="party-link">📋</span>
   </div>
 </div>
 <div class="row">

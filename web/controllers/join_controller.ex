@@ -7,6 +7,12 @@ defmodule PointingParty.JoinController do
     |> redirect(to: user_path(conn, :signin))
   end
 
+  def join(conn, %{"id" => party_key}) do
+    conn
+    |> join_the_party(party_key)
+    |> redirect(to: user_path(conn, :signin))
+  end
+
   defp join_the_party(conn, party_key) do
     party = PointingParty.PartyTracker.party(party_key)
     conn

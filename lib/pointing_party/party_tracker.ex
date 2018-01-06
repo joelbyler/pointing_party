@@ -16,8 +16,10 @@ defmodule PointingParty.PartyTracker do
     {:ok, pid} = GenServer.start_link(__MODULE__, initial_state, opts)
   end
 
-  def start_party(party_key, name) do
+  def start_party(name) do
+    party_key = generate_party_key(4)
     GenServer.cast(:party_tracker, {:start_party, party_key, name})
+    party_key
   end
 
   def remove(party_key) do
@@ -77,4 +79,13 @@ defmodule PointingParty.PartyTracker do
   defp map_to_party(party) do
     struct(%Party{ party_key: hd(Tuple.to_list(party))}, hd(tl(Tuple.to_list(party))))
   end
+
+  defp generate_party_key(key_length) do
+    key_length
+    |> :crypto.strong_rand_bytes
+    |> Base.url_encode64
+    |> binary_part(0, key_length)
+    |> String.upcase
+  end
+
 end

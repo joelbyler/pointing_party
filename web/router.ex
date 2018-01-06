@@ -27,6 +27,8 @@ defmodule PointingParty.Router do
 
     get "/show", PartyController, :show
 
+    get "/:id", JoinController, :join
+
     get "/.well-known/acme-challenge/:id", ChallengeController, :show
   end
 

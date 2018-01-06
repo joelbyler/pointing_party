@@ -29,9 +29,7 @@ defmodule PointingParty.PartyController do
   end
 
   defp start_party_tracker(conn, party_name) do
-    party_key = SecureRandom.urlsafe_base64
-    PointingParty.PartyTracker.start_party(party_key, party_name)
-
+    party_key = PointingParty.PartyTracker.start_party(party_name)
     conn
     |> put_session(:party_key, party_key)
   end

@@ -1,1 +1,20 @@
 /* This file is for your main application css. */
+.clipboard:hover {
+  cursor: pointer;
+}
+.copy-link.party-link {
+  border-radius: 4px 0 0 4px;
+  width: 300px;
+}
+.copy-link.clipboard {
+  border-radius: 0 4px 4px 0;
+  padding: 4px 3px;
+}
+
+.copy-link {
+  background-color: #e4e4e4;
+  padding: 4px 10px;
+  border: 1px solid #c7c7c7;
+  height: 30px;
+  display: inline-block;
+}
