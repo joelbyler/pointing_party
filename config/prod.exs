@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :pointing_party, PointingParty.Endpoint,
+config :pointing_party, PointingPartyWeb.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [scheme: "http", host: "www.pointing-party.com", port: 80],
   # url: [scheme: "https", host: "www.pointing-party.com", port: 443],
@@ -16,7 +16,7 @@ config :pointing_party,
 
 config :logger, level: :info
 
-config :pointing_party, PointingParty.Repo,
+config :pointing_party, PointingPartyWeb.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
