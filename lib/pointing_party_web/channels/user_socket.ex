@@ -3,16 +3,18 @@ defmodule PointingPartyWeb.UserSocket do
 
   ## Channels
   # channel "room:*", PointingPartyWeb.RoomChannel
-  channel "party:*", PointingPartyWeb.PartyChannel
+  channel("party:*", PointingPartyWeb.PartyChannel)
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
+  transport(:websocket, Phoenix.Transports.WebSocket)
 
   def connect(%{"token" => token}, socket) do
-    case Phoenix.Token.verify(socket, "user name", token, max_age: 1209600) do
+    case Phoenix.Token.verify(socket, "user name", token, max_age: 1_209_600) do
       {:ok, user_name} ->
         {:ok, assign(socket, :user_name, user_name)}
-      {:error, _reason} -> :error
+
+      {:error, _reason} ->
+        :error
     end
   end
 

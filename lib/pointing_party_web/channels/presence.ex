@@ -72,6 +72,7 @@ defmodule PointingPartyWeb.Presence do
   information, while maintaining the required `:metas` field from the
   original presence data.
   """
-  use Phoenix.Presence, otp_app: :pointing_party,
-                        pubsub_server: PointingParty.PubSub
+  use Phoenix.Presence,
+    otp_app: :pointing_party,
+    pubsub_server: PointingParty.PubSub
 end
