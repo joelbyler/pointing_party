@@ -11,7 +11,6 @@
     <input class="btn btn-primary btn-points" type="button" data-points="3" value="3">
     <input class="btn btn-primary btn-points" type="button" data-points="5" value="5">
     <input class="btn btn-primary btn-points" type="button" data-points="8" value="8">
-    <input class="btn btn-primary btn-points" type="button" data-points="15" value="15">
     <input class="btn btn-primary btn-points" type="button" data-points="?" value="?">
   </div>
   <div class="col-md-4">
