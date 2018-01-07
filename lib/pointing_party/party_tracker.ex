@@ -41,9 +41,9 @@ defmodule PointingParty.PartyTracker do
   end
 
   def handle_cast({:start_party, party_key, name}, state) do
-    IO.puts "start_party: #{party_key}; #{name}"
+    IO.puts("start_party: #{party_key}; #{name}")
     true = :ets.insert(state.ets_table_name, {party_key, %{name: name}})
-    {:noreply, state }
+    {:noreply, state}
   end
 
   def handle_cast({:remove, party_key}, state) do
@@ -53,18 +53,18 @@ defmodule PointingParty.PartyTracker do
 
   def handle_call({:party, party_key}, _from, state) do
     %{ets_table_name: ets_table_name} = state
-    result = :ets.lookup(ets_table_name, party_key)++[{party_key, nil}] |> hd |> map_to_party
-    IO.puts "get_party: #{party_key}; #{result.name}"
+    result = (:ets.lookup(ets_table_name, party_key) ++ [{party_key, nil}]) |> hd |> map_to_party
+    IO.puts("get_party: #{party_key}; #{result.name}")
     {:reply, result, state}
   end
 
   def handle_call(msg, _from, state) do
-    IO.puts "WARNING: default call in GenServer"
+    IO.puts("WARNING: default call in GenServer")
     {:reply, :ok, []}
   end
 
   def handle_cast(_msg, state) do
-    IO.puts "WARNING: default cast in GenServer"
+    IO.puts("WARNING: default cast in GenServer")
     {:noreply, []}
   end
 
@@ -77,15 +77,14 @@ defmodule PointingParty.PartyTracker do
   end
 
   defp map_to_party(party) do
-    struct(%Party{ party_key: hd(Tuple.to_list(party))}, hd(tl(Tuple.to_list(party))))
+    struct(%Party{party_key: hd(Tuple.to_list(party))}, hd(tl(Tuple.to_list(party))))
   end
 
   defp generate_party_key(key_length) do
     key_length
-    |> :crypto.strong_rand_bytes
-    |> Base.url_encode64
+    |> :crypto.strong_rand_bytes()
+    |> Base.url_encode64()
     |> binary_part(0, key_length)
-    |> String.upcase
+    |> String.upcase()
   end
-
 end

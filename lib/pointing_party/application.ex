@@ -16,7 +16,7 @@ defmodule PointingParty.Application do
       # worker(PointingParty.Worker, [arg1, arg2, arg3]),
 
       worker(PointingParty.PartyTracker, [[name: :party_tracker]]),
-      supervisor(PointingPartyWeb.Presence, []),
+      supervisor(PointingPartyWeb.Presence, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
