@@ -61,9 +61,14 @@ defmodule PointingPartyWeb.PartyChannel do
     {:noreply, socket}
   end
 
+  def handle_in("points:show", %{}, socket) do
+    broadcast!(socket, "user:points:show", %{})
+    {:noreply, socket}
+  end
+
   intercept(["user:points:reset"])
 
-  def handle_out("user:points:reset", msg, socket) do
+  def handle_out("user:points:reset", _msg, socket) do
     {:ok, _} =
       Presence.update(socket, socket.assigns.user_name, %{
         points: nil
@@ -72,8 +77,4 @@ defmodule PointingPartyWeb.PartyChannel do
     {:noreply, socket}
   end
 
-  def handle_in("points:show", %{}, socket) do
-    broadcast!(socket, "user:points:show", %{})
-    {:noreply, socket}
-  end
 end

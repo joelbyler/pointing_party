@@ -13,7 +13,7 @@ defmodule PointingParty.PartyTracker do
       parties: %{}
     ]
 
-    {:ok, pid} = GenServer.start_link(__MODULE__, initial_state, opts)
+    {:ok, _pid} = GenServer.start_link(__MODULE__, initial_state, opts)
   end
 
   def start_party(name) do
@@ -51,6 +51,11 @@ defmodule PointingParty.PartyTracker do
     {:noreply, state}
   end
 
+  def handle_cast(_msg, _state) do
+    IO.puts("WARNING: default cast in GenServer")
+    {:noreply, []}
+  end
+
   def handle_call({:party, party_key}, _from, state) do
     %{ets_table_name: ets_table_name} = state
     result = (:ets.lookup(ets_table_name, party_key) ++ [{party_key, nil}]) |> hd |> map_to_party
@@ -58,14 +63,9 @@ defmodule PointingParty.PartyTracker do
     {:reply, result, state}
   end
 
-  def handle_call(msg, _from, state) do
+  def handle_call(_msg, _from, _state) do
     IO.puts("WARNING: default call in GenServer")
     {:reply, :ok, []}
-  end
-
-  def handle_cast(_msg, state) do
-    IO.puts("WARNING: default cast in GenServer")
-    {:noreply, []}
   end
 
   def stop(server) do
@@ -73,7 +73,7 @@ defmodule PointingParty.PartyTracker do
   end
 
   defp map_to_party({party_key, nil}) do
-    %Party{}
+    %Party{party_key: party_key}
   end
 
   defp map_to_party(party) do
