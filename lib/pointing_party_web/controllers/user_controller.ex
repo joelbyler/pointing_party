@@ -1,11 +1,11 @@
 defmodule PointingPartyWeb.UserController do
   use PointingPartyWeb, :controller
 
-  plug :require_party when not action in [:connect]
-  plug :require_user when not action in [:connect]
+  plug(:require_party when action not in [:connect])
+  plug(:require_user when action not in [:connect])
 
   def signin(conn, _params) do
-    render conn, "signin.html"
+    render(conn, "signin.html")
   end
 
   def connect(conn, %{"party" => %{"user_name" => ""}}) do
@@ -13,6 +13,7 @@ defmodule PointingPartyWeb.UserController do
     |> put_flash(:info, "Please provide a user name")
     |> redirect(to: page_path(conn, :signin))
   end
+
   def connect(conn, %{"party" => %{"user_name" => user_name}}) do
     conn
     |> put_session(:user_name, user_name)

@@ -1,11 +1,11 @@
 defmodule PointingPartyWeb.PartyController do
   use PointingPartyWeb, :controller
 
-  plug :require_party when not action in [:create]
-  plug :require_user when action in [:show]
+  plug(:require_party when action not in [:create])
+  plug(:require_user when action in [:show])
 
   def new(conn, _params) do
-    render conn, "new.html"
+    render(conn, "new.html")
   end
 
   def create(conn, %{"party" => %{"for" => ""}}) do
@@ -13,6 +13,7 @@ defmodule PointingPartyWeb.PartyController do
     |> put_flash(:info, "Please provide a session name")
     |> redirect(to: page_path(conn, :new))
   end
+
   def create(conn, %{"party" => %{"for" => party_name}}) do
     conn
     |> start_party_tracker(party_name)
@@ -30,6 +31,7 @@ defmodule PointingPartyWeb.PartyController do
 
   defp start_party_tracker(conn, party_name) do
     party_key = PointingParty.PartyTracker.start_party(party_name)
+
     conn
     |> put_session(:party_key, party_key)
   end
@@ -45,6 +47,7 @@ defmodule PointingPartyWeb.PartyController do
       |> halt()
     end
   end
+
   defp require_user(conn, _) do
     if user_name = get_session(conn, :user_name) do
       conn
